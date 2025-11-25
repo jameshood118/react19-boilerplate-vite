@@ -15,8 +15,7 @@ createRoot(document.getElementById('root')!).render(
          We set the background color here to the main page background color. */}
       <Container
         maxWidth="xl" // Use the full width for the outer container on large screens
-        sx={{
-          bgcolor: '#F7F7F7', // Use the dark background color
+        sx={{ // Use the dark background color
           minHeight: '100vh', // Ensures the background covers the whole viewport
           minWidth: '100vw',
           // No top/bottom padding is applied to this outer Container by default, 
