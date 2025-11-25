@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Box, Typography, Container, Button, TextField, Paper, Divider, List, ListItem, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
+import { Box, Typography, Container, Button, TextField, Paper, Divider, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faHistory, faUserCircle, faMicrophone, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
