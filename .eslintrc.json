@@ -1,0 +1,57 @@
+{
+  // Sets the root property to true so that ESLint stops looking for configuration files in parent directories.
+  "root": true,
+  // Specifies the ESLint parser for TypeScript
+  "parser": "@typescript-eslint/parser",
+  // Specifies the environment, making global variables available
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  // Plugins used for rules
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  // Extends standard and recommended configurations
+  "extends": [
+    // ESLint's recommended base rules
+    "eslint:recommended",
+    // TypeScript's recommended rules
+    "plugin:@typescript-eslint/recommended",
+    // React's recommended rules (specifically for JSX/TSX)
+    "plugin:react/recommended",
+    // Rules for React Hooks best practices
+    "plugin:react-hooks/recommended",
+    // Rules to enforce that only arrow functions are used for components
+    "plugin:react/jsx-runtime"
+  ],
+  // Custom rules configuration
+  "rules": {
+    // Enforce the use of ES6 arrow functions for functional components
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    // Relax rules for prop types since we use TypeScript
+    "react/prop-types": "off",
+    // Disable unnecessary explicit function return types, letting TS infer
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // Allows us to use `any` when absolutely necessary, but discourages it
+    "@typescript-eslint/no-explicit-any": "warn",
+    // Enforce exhaustive dependencies for hooks
+    "react-hooks/exhaustive-deps": "error"
+  },
+  // Settings for plugins
+  "settings": {
+    "react": {
+      // Automatically detect the React version to apply appropriate rules
+      "version": "detect" 
+    }
+  }
+}
