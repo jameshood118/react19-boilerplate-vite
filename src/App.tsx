@@ -200,7 +200,7 @@ const App = () => {
           sx={{ 
             position: 'sticky', 
             bottom: 0, 
-            width: '100%', 
+            width: 'auto', 
             py: 2, 
             px: 4, 
             bgcolor: '#171717',
@@ -208,13 +208,12 @@ const App = () => {
             zIndex: 10 
           }}
         >
-          <Container maxWidth="md" sx={{ px: 0 }}>
+          <Container maxWidth="xl" sx={{ p: 0 }}>
             <Paper 
               elevation={3} 
               component="form"
               onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
               sx={{ 
-                p: 1, 
                 display: 'flex', 
                 alignItems: 'center', 
                 borderRadius: '25px', 

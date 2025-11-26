@@ -18,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
         sx={{ // Use the dark background color
           minHeight: '100vh', // Ensures the background covers the whole viewport
           minWidth: '100vw',
+          px: 0,
           // No top/bottom padding is applied to this outer Container by default, 
           // allowing the inner Box to control the layout.
         }}

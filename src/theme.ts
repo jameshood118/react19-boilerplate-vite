@@ -22,6 +22,11 @@ main: '#E0F7FA', // Light Cyan (Inner Box/Div background)
     }
   },
   components: {
+    MuiContainer:{
+      defaultProps: {
+        disableGutters: true, 
+      }
+    },
     MuiCard: {
       defaultProps: {
         elevation: 4, 
