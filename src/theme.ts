@@ -8,34 +8,34 @@ const customTheme = createTheme({
     },
     primary: {
       main: '#212121', // Dark Gray (Container background/text if needed)
-      contrastText: '#FFFFFF', 
+      contrastText: '#FFFFFF',
     },
     secondary: {
-main: '#E0F7FA', // Light Cyan (Inner Box/Div background)
+      main: '#E0F7FA', // Light Cyan (Inner Box/Div background)
       contrastText: '#000000', // Black for text on light background
     },
   },
   typography: {
     button: {
-        textTransform: 'none', 
-        fontWeight: 600,
-    }
+      textTransform: 'none',
+      fontWeight: 600,
+    },
   },
   components: {
-    MuiContainer:{
+    MuiContainer: {
       defaultProps: {
-        disableGutters: true, 
-      }
+        disableGutters: true,
+      },
     },
     MuiCard: {
       defaultProps: {
-        elevation: 4, 
+        elevation: 4,
       },
       styleOverrides: {
         root: {
-            borderRadius: 12, 
-        }
-      }
+          borderRadius: 12,
+        },
+      },
     },
   },
 });
