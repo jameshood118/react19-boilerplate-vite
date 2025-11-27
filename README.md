@@ -1,75 +1,35 @@
-# React + TypeScript + Vite
+# 🚀 React 19 + Vite + TypeScript Boilerplate (WCAG & Enforced)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository serves as a foundational boilerplate for building modern, high-performance web applications, featuring a clean chat UI skeleton styled after Gemini/ChatGPT.
 
-Currently, two official plugins are available:
+It uses the latest stable tools and adheres to high standards for performance, type safety, accessibility (WCAG 2.2), and code consistency.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technology Stack Overview
 
-## React Compiler
+| Category           | Key Package             | Why It Was Chosen                                                                                                                                                                                      |
+| ------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Core Framework** | **React 19**            | **The Latest Standard.** Provides modern features like Server Components, built-in Actions, and new hooks (useActionState, useOptimistic), ensuring the codebase is current and performance-optimized. |
+| **Build Tool**     | **Vite**                | **Speed.** Replaces older tools like Webpack/CRA for near-instant server startup and Hot Module Replacement (HMR) during development, drastically improving developer experience (DX).                 |
+| **Language**       | **TypeScript**          | **Type Safety.** Adds static typing to JavaScript, catching errors during development rather than runtime. Essential for large, maintainable applications.                                             |
+| **UI Library**     | **Material UI (MUI)**   | **Components & Styling.** Provides a vast, accessible library of pre-built components and a powerful theming system, significantly accelerating UI development.                                        |
+| **Styling/Design** | **WCAG 2.2 Dark Theme** | **Accessibility.** The custom dark theme is built specifically to meet **WCAG 2.2 AA** contrast and target size requirements, ensuring the application is inclusive from day one.                      |
+| **Iconography**    | **Font Awesome**        | **Flexibility.** Provides a massive, consistent library of icons that can be easily imported as SVG components, replacing basic image assets.                                                          |
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## ⚙️ Code Quality & Enforcement
 
-Note: This will impact Vite dev & build performances.
+This project implements a comprehensive two-stage enforcement system to guarantee all code is formatted consistently and meets project quality standards.
 
-## Expanding the ESLint configuration
+| Tool            | Role                  | Enforcement Method                                                                                                                                                                                |
+| --------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ESLint**      | **Code Quality**      | Analyzes code for correctness, potential bugs, and bad practices (e.g., forgotten hook dependencies).                                                                                             |
+| **Prettier**    | **Code Formatting**   | Handles all stylistic rules (e.g., quotes, spacing, semicolons). **eslint-config-prettier** is used to disable all conflicting ESLint style rules, allowing Prettier to handle style exclusively. |
+| **Husky**       | **Git Hooks**         | Sets up a Git hook that runs automatically before every commit.                                                                                                                                   |
+| **lint-staged** | **Pre-Commit Filter** | Ensures that ESLint and Prettier only run on files that have been staged (git add .), keeping commit times fast.                                                                                  |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⭐ Recommended Editor Setup (VS Code)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+To ensure automatic formatting and fixing upon save, please install the following extensions and confirm the project's **.vscode/settings.json** is active:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Prettier - Code formatter** (esbenp.prettier-vscode)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **ESLint** (dbaeumer.vscode-eslint)
