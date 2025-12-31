@@ -19,7 +19,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 // --- TYPESCRIPT INTERFACES ---
 
@@ -51,20 +51,25 @@ const initialMessages: Message[] = [
       'Hello! I am a clone interface ready to help you with your next request. How can I assist?',
     sender: 'model',
   },
-  { id: 2, content: 'What has changed between react 18 and the current version?', sender: 'user' },
+  {
+    id: 2,
+    content: 'What has changed between react 18 and the current version?',
+    sender: 'user',
+  },
 ];
 
 /** Renders a single message bubble. */
 interface MessageItemProps {
   message: Message;
 }
-const MessageItem: React.FC<MessageItemProps> = ({ message }) => (
+
+const MessageItem = ({ message }: MessageItemProps) => (
   <Box
     sx={{
       display: 'flex',
       justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
       my: 2,
-      mx: message.sender === 'model' ? 0 : 2, // Model messages might span full width
+      mx: message.sender === 'model' ? 0 : 2,
     }}
   >
     <Paper
@@ -75,7 +80,7 @@ const MessageItem: React.FC<MessageItemProps> = ({ message }) => (
         borderRadius: '12px',
         borderBottomLeftRadius: message.sender === 'model' ? 0 : '12px',
         borderBottomRightRadius: message.sender === 'user' ? 0 : '12px',
-        bgcolor: message.sender === 'user' ? '#1976D2' : '#303030', // Blue for User, Dark Gray for Model
+        bgcolor: message.sender === 'user' ? '#1976D2' : '#303030',
         color: 'white',
         boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
       }}
@@ -89,50 +94,59 @@ const App = () => {
   // IMPORTANT: For Vite, static assets in the 'public' folder must be referenced
   // with a path relative to the root, like '/assets/...'
   const imagePath = '/assets/gallerybanner.png';
+
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState<string>('');
-  const [isSending, setIsSending] = useState<boolean>(false); // Stubbed state for loading indicator
+  const [isSending, setIsSending] = useState<boolean>(false);
 
-  // Stub function for handling the send button click
   const handleSendMessage = useCallback(() => {
     if (!input.trim() || isSending) return;
 
-    // 1. Stub: Set loading state
     setIsSending(true);
 
-    // 2. Stub: Add user message to state
     const newUserMessage: Message = {
       id: Date.now(),
       content: input,
       sender: 'user',
     };
+
     setMessages((prev) => [...prev, newUserMessage]);
     setInput('');
 
-    // 3. Stub: Simulate API call delay for model response
     setTimeout(() => {
       const newModelMessage: Message = {
         id: Date.now() + 1,
         content:
-          "This is the stubbed AI response for: '" +
+          `This is the stubbed AI response for: '` +
           newUserMessage.content.substring(0, 30) +
-          "...' The structure works!",
+          `...' The structure works!`,
         sender: 'model',
       };
+
       setMessages((prev) => [...prev, newModelMessage]);
-      setIsSending(false); // End loading
+      setIsSending(false);
     }, 1500);
   }, [input, isSending]);
 
-  // Stub function for starting a new chat
   const handleNewChat = useCallback(() => {
-    console.log('Stub: Starting a new chat session.');
-    setMessages([]); // Clear messages for a "new" chat
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.log('Stub: Starting a new chat session.');
+    }
+
+    setMessages([]);
     setInput('');
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', bgcolor: '#171717', color: 'white' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        bgcolor: '#171717',
+        color: 'white',
+      }}
+    >
       {/* 1. SIDEBAR (Navigation and History) */}
       <Box
         component="nav"
@@ -159,7 +173,10 @@ const App = () => {
 
         <Divider sx={{ mb: 2, bgcolor: '#444' }} />
 
-        <Typography variant="subtitle2" sx={{ color: '#aaa', mb: 1, textTransform: 'uppercase' }}>
+        <Typography
+          variant="subtitle2"
+          sx={{ color: '#aaa', mb: 1, textTransform: 'uppercase' }}
+        >
           <FontAwesomeIcon icon={faHistory} style={{ marginRight: '8px' }} />
           History
         </Typography>
@@ -171,7 +188,7 @@ const App = () => {
                 sx={{
                   borderRadius: '8px',
                   '&:hover': { bgcolor: '#303030' },
-                  bgcolor: session.id === 1 ? '#303030' : 'transparent', // Highlight active chat
+                  bgcolor: session.id === 1 ? '#303030' : 'transparent',
                 }}
               >
                 <ListItemText
@@ -187,7 +204,11 @@ const App = () => {
 
         <Button
           fullWidth
-          sx={{ justifyContent: 'flex-start', color: 'white', '&:hover': { bgcolor: '#303030' } }}
+          sx={{
+            justifyContent: 'flex-start',
+            color: 'white',
+            '&:hover': { bgcolor: '#303030' },
+          }}
           startIcon={<FontAwesomeIcon icon={faUserCircle} size="lg" />}
         >
           User Settings
@@ -202,7 +223,7 @@ const App = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          position: 'relative', // For fixed footer
+          position: 'relative',
         }}
       >
         <img
@@ -216,13 +237,22 @@ const App = () => {
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           }}
         />
+
         {/* 2a. MESSAGE HISTORY (Scrollable) */}
         <Box sx={{ flexGrow: 1, overflowY: 'auto', p: 4, pt: 8 }}>
           {messages.map((msg) => (
             <MessageItem key={msg.id} message={msg} />
           ))}
+
           {isSending && (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', my: 2, pl: 2 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                my: 2,
+                pl: 2,
+              }}
+            >
               <Typography variant="body2" sx={{ color: '#aaa' }}>
                 Model is typing...
               </Typography>
@@ -239,7 +269,7 @@ const App = () => {
             py: 2,
             px: 4,
             bgcolor: '#171717',
-            boxShadow: '0 -4px 10px rgba(0,0,0,0.5)', // Shadow at the top
+            boxShadow: '0 -4px 10px rgba(0,0,0,0.5)',
             zIndex: 10,
           }}
         >
@@ -271,7 +301,9 @@ const App = () => {
                   '& .MuiInputBase-input': { color: 'white' },
                   '& .MuiInput-underline:before': { borderBottom: 'none' },
                   '& .MuiInput-underline:after': { borderBottom: 'none' },
-                  '&:hover .MuiInput-underline:before': { borderBottom: 'none !important' },
+                  '&:hover .MuiInput-underline:before': {
+                    borderBottom: 'none !important',
+                  },
                 }}
                 disabled={isSending}
                 onKeyDown={(e) => {
@@ -282,12 +314,17 @@ const App = () => {
                 }}
               />
 
-              <Button sx={{ minWidth: 0, p: 1, borderRadius: '50%' }}>
+              <Button
+                type="button"
+                aria-label="Voice input"
+                sx={{ minWidth: 0, p: 1, borderRadius: '50%' }}
+              >
                 <FontAwesomeIcon icon={faMicrophone} color="#aaa" />
               </Button>
 
               <Button
                 type="submit"
+                aria-label="Send message"
                 variant="contained"
                 color="primary"
                 sx={{
@@ -303,6 +340,7 @@ const App = () => {
                 <FontAwesomeIcon icon={faPaperPlane} />
               </Button>
             </Paper>
+
             <Typography variant="caption" color="#aaa" sx={{ mt: 1 }}>
               This is a clone UI. The model is stubbed.
             </Typography>

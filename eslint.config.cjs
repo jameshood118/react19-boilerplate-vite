@@ -63,9 +63,15 @@ module.exports = [
       // --- Custom Rules ---
       'react/function-component-definition': [
         'error',
-        { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+        {
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function',
+        },
       ],
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
 
       // TypeScript and PropType relaxations
       'react/prop-types': 'off',
